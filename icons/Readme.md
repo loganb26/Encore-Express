@@ -1,5 +1,3 @@
-# Introduction
-Icons used throughput the pages.
 ![volume_100x100](https://github.com/loganb26/Encore-Express/assets/165728092/fe9f0cc4-b320-4383-b426-737059038003)
 ![volume_50x50](https://github.com/loganb26/Encore-Express/assets/165728092/ff73fd75-f68e-454a-8fe3-cfe749cdc3c0)
 ![skip_100x100](https://github.com/loganb26/Encore-Express/assets/165728092/ae60e6a4-e8b4-4ab5-9900-4ca5394c95c2)
