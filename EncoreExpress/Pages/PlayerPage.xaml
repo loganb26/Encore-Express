@@ -3,10 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EncoreExpress.Pages.PlayerPage"
              Title="PlayerPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="PlayerPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout HorizontalOptions="Center">
+            <Image Source="playlist_50x50.png" WidthRequest="50" HeightRequest="50"/>
+            <HorizontalStackLayout>
+                <Image Source="back_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Image Source="play_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Image Source="skip_50x50.png" WidthRequest="50" HeightRequest="50"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Image Source="low_volume_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Slider x:Name="volumeControl" Minimum="0" Maximum="100" WidthRequest="50"/>
+                <Image Source="volume_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <HorizontalStackLayout>
+                    <Label Text="The volume is "/>
+                    <Label Text="{Binding Path=Value}" BindingContext="{x:Reference volumeControl}"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
