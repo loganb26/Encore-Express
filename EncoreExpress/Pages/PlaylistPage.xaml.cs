@@ -1,6 +1,8 @@
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.Maui.Essentials;
+using System.Threading.Tasks;
 
 namespace EncoreExpress.Pages
 {
@@ -24,14 +26,28 @@ namespace EncoreExpress.Pages
             PlaylistView.ItemsSource = Songs;
         }
 
-        public void OnBrowseLocalSongsClicked(object sender, EventArgs e)
+        public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
         {
-            // TODO: Add your code here to browse local songs
+            var options = new PickOptions
+            {
+                PickerTitle = "Please select a music file",
+                FileTypes = FilePickerFileType.MusicFiles
+            };
+
+            var result = await FilePicker.PickAsync(options);
+
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync();
+               
+                Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
+            }
         }
 
-        public void OnBackButtonClicked(object sender, EventArgs e)
+        public async void OnBackButtonClicked(object sender, EventArgs e)
         {
-            // TODO: Add your code here to navigate back to the home page
+            
+            await Shell.Current.GoToAsync("//HomePage");
         }
     }
 
