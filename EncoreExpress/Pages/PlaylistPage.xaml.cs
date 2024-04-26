@@ -15,7 +15,7 @@ namespace EncoreExpress.Pages
         {
             InitializeComponent();
 
-            // Initialize your song list here
+            // Initialize song list 
             Songs = new ObservableCollection<Song>
             {
                 new Song { Name = "Song 1", IsAddedToQueue = false },
