@@ -8,5 +8,20 @@
             Text="Playlist Page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+        <ListVeiw x:Name="Playlist"
+          <ListVeiw.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal">
+        <Label Text= "{Binding Name}" />
+        <Switch IsToggled="{}Binding IsAddedToQueue}" />
+                    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+       <Button Text="Browse Local Songs" Clicked="OnBrowseLocalSongsClicked" />
+     <Button Text="Back" Clicked="OnBackButtonClicked" />
+ </VerticalStackLayout>
 </ContentPage>
