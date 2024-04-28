@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,15 +16,15 @@ namespace EncoreExpress.Pages
         {
             InitializeComponent();
 
-            // Initialize song list 
+            // Initialize song list
             Songs = new ObservableCollection<Song>
             {
                 new Song { Name = "Song 1", IsAddedToQueue = false },
-                new Song { Name = "Song 2", IsAddedToQueue = false },
+                new Song { Name = "Song 2", IsAddedToQueue = false }
                 // Add more songs as needed
             };
 
-            PlaylistView.ItemsSource = Songs;
+            Playlist.ItemsSource = Songs;
         }
 
         public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
@@ -39,14 +40,12 @@ namespace EncoreExpress.Pages
             if (result != null)
             {
                 var stream = await result.OpenReadAsync();
-               
                 Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
             }
         }
 
         public async void OnBackButtonClicked(object sender, EventArgs e)
         {
-            
             await Shell.Current.GoToAsync("//HomePage");
         }
     }
