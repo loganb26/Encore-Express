@@ -1,73 +1,87 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Essentials;
 
-namespace EncoreExpress.Pages
+namespace EncoreExpress.ConsoleApp
 {
-    public partial class PlaylistPage : ContentPage
+    class Program
     {
-        public ObservableCollection<Song> Songs { get; set; }
+        static List<Song> Songs = new List<Song>();
 
-        public PlaylistPage()
+        static void Main(string[] args)
         {
-            InitializeComponent();
+            InitializeSongs();
 
-            // Initialize song list
-            Songs = new ObservableCollection<Song>
+            bool exit = false;
+            while (!exit)
             {
-                new Song { Name = "Song 1", IsAddedToQueue = false },
-                new Song { Name = "Song 2", IsAddedToQueue = false }
-                // Add more songs as needed
-            };
-
-            Playlist.ItemsSource = Songs;
+                DisplayMenu();
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        DisplaySongs();
+                        break;
+                    case "2":
+                        AddSongFromFile();
+                        break;
+                    case "3":
+                        ToggleSongQueueStatus();
+                        break;
+                    case "4":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option, try again.");
+                        break;
+                }
+            }
         }
 
-        private async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
+        static void InitializeSongs()
         {
-            var options = new PickOptions
-            {
-                PickerTitle = "Please select a music file",
-                FileTypes = FilePickerFileType.Music
-            };
+            Songs.Add(new Song { Name = "Song 1", IsAddedToQueue = false });
+            Songs.Add(new Song { Name = "Song 2", IsAddedToQueue = false });
+            // Add more songs as needed
+        }
 
+        static void DisplayMenu()
+        {
+            Console.WriteLine("\nChoose an option:");
+            Console.WriteLine("1 - Display Songs");
+            Console.WriteLine("2 - Add Song from File");
+            Console.WriteLine("3 - Toggle Song Queue Status");
+            Console.WriteLine("4 - Exit");
+        }
+
+        static void DisplaySongs()
+        {
+            Console.WriteLine("\nList of Songs:");
+            foreach (var song in Songs)
+            {
+                Console.WriteLine($"Name: {song.Name}, In Queue: {song.IsAddedToQueue}");
+            }
+        }
+
+        static async void AddSongFromFile()
+        {
+            Console.WriteLine("Enter file path:");
+            string filePath = Console.ReadLine();
             try
             {
-                var result = await FilePicker.PickAsync(options);
-
-                if (result != null)
-                {
-                    var stream = await result.OpenReadAsync();
-                    Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
-                }
+                var fileName = Path.GetFileName(filePath);
+                Songs.Add(new Song { Name = fileName, IsAddedToQueue = false });
+                Console.WriteLine("Song added successfully.");
             }
             catch (Exception ex)
             {
-                // Handle exceptions, e.g., permission denied or canceled file picker operation
-                await DisplayAlert("Error", $"Failed to pick a file: {ex.Message}", "OK");
+                Console.WriteLine($"Failed to add song from file: {ex.Message}");
             }
         }
 
-        private async void OnBackButtonClicked(object sender, EventArgs e)
+        static void ToggleSongQueueStatus()
         {
-            await Shell.Current.GoToAsync("//HomePage");
-        }
+            Console.WriteLine("Enter
 
-        private void OnToggleSwitchChanged(object sender, ToggledEventArgs e)
-        {
-            // Update the IsAddedToQueue property of the corresponding song
-            if (sender is Switch toggleSwitch && toggleSwitch.BindingContext is Song song)
-            {
-                song.IsAddedToQueue = e.Value;
-            }
-        }
-    }
-
-    public class Song
-    {
-        public string Name { get; set; }
-        public bool IsAddedToQueue { get; set; }
-    }
-}
