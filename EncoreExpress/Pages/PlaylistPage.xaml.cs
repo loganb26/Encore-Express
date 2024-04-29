@@ -1,8 +1,4 @@
 using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Microsoft.Maui.Essentials;
-using System.Threading.Tasks;
 
 namespace EncoreExpress.Pages
 {
@@ -10,10 +6,11 @@ namespace EncoreExpress.Pages
     public partial class PlaylistPage : ContentPage
     {
         public ObservableCollection<Song> Songs { get; set; }
+        public object PlaylistView { get; }
 
-        public PlaylistPage()
+        public PlaylistPage(object playlistView)
         {
-            InitializeComponent();
+
 
             // Initialize song list 
             Songs = new ObservableCollection<Song>
@@ -23,7 +20,8 @@ namespace EncoreExpress.Pages
                 // Add more songs as needed
             };
 
-            PlaylistView.ItemsSource = Songs;
+            //PlaylistView.ItemsSource = Songs;
+            
         }
 
         public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
@@ -31,7 +29,7 @@ namespace EncoreExpress.Pages
             var options = new PickOptions
             {
                 PickerTitle = "Please select a music file",
-                FileTypes = FilePickerFileType.MusicFiles
+                //FileTypes = FilePickerFileType.MusicFiles
             };
 
             var result = await FilePicker.PickAsync(options);
@@ -39,14 +37,14 @@ namespace EncoreExpress.Pages
             if (result != null)
             {
                 var stream = await result.OpenReadAsync();
-               
+
                 Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
             }
         }
 
         public async void OnBackButtonClicked(object sender, EventArgs e)
         {
-            
+
             await Shell.Current.GoToAsync("//HomePage");
         }
     }
