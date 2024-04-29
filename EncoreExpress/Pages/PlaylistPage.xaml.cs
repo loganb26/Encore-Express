@@ -10,7 +10,7 @@ namespace EncoreExpress.ConsoleApp
     {
         static List<Song> Songs = new List<Song>();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             InitializeSongs();
 
@@ -25,7 +25,7 @@ namespace EncoreExpress.ConsoleApp
                         DisplaySongs();
                         break;
                     case "2":
-                        AddSongFromFile();
+                        await AddSongFromFileAsync();
                         break;
                     case "3":
                         ToggleSongQueueStatus();
@@ -58,30 +58,57 @@ namespace EncoreExpress.ConsoleApp
 
         static void DisplaySongs()
         {
-            Console.WriteLine("\nList of Songs:");
             foreach (var song in Songs)
             {
                 Console.WriteLine($"Name: {song.Name}, In Queue: {song.IsAddedToQueue}");
             }
         }
 
-        static async void AddSongFromFile()
+        static async Task AddSongFromFileAsync()
         {
             Console.WriteLine("Enter file path:");
             string filePath = Console.ReadLine();
-            try
+            if (File.Exists(filePath))
             {
-                var fileName = Path.GetFileName(filePath);
-                Songs.Add(new Song { Name = fileName, IsAddedToQueue = false });
-                Console.WriteLine("Song added successfully.");
+                try
+                {
+                    var fileName = Path.GetFileName(filePath);
+                    Songs.Add(new Song { Name = fileName, IsAddedToQueue = false });
+                    Console.WriteLine("Song added successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to add song from file: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Failed to add song from file: {ex.Message}");
+                Console.WriteLine("File does not exist. Please check the path and try again.");
             }
         }
 
         static void ToggleSongQueueStatus()
         {
-            Console.WriteLine("Enter
+            Console.WriteLine("Enter the song name to toggle:");
+            string name = Console.ReadLine();
+            var song = Songs.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (song != null)
+            {
+                song.IsAddedToQueue = !song.IsAddedToQueue;
+                Console.WriteLine($"{song.Name} queue status updated to {song.IsAddedToQueue}.");
+            }
+            else
+            {
+                Console.WriteLine("Song not found.");
+            }
+        }
+    }
+
+    public class Song
+    {
+        public string Name { get; set; }
+        public bool IsAddedToQueue { get; set; }
+    }
+}
+
 
