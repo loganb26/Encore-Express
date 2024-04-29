@@ -1,13 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Microsoft.Maui.Essentials;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace EncoreExpress.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaylistPage : ContentPage
     {
         public ObservableCollection<Song> Songs { get; set; }
@@ -27,26 +25,43 @@ namespace EncoreExpress.Pages
             Playlist.ItemsSource = Songs;
         }
 
-        public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
+        private async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
         {
             var options = new PickOptions
             {
                 PickerTitle = "Please select a music file",
-                FileTypes = FilePickerFileType.MusicFiles
+                FileTypes = FilePickerFileType.Music
             };
 
-            var result = await FilePicker.PickAsync(options);
-
-            if (result != null)
+            try
             {
-                var stream = await result.OpenReadAsync();
-                Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
+                var result = await FilePicker.PickAsync(options);
+
+                if (result != null)
+                {
+                    var stream = await result.OpenReadAsync();
+                    Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, e.g., permission denied or canceled file picker operation
+                await DisplayAlert("Error", $"Failed to pick a file: {ex.Message}", "OK");
             }
         }
 
-        public async void OnBackButtonClicked(object sender, EventArgs e)
+        private async void OnBackButtonClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//HomePage");
+        }
+
+        private void OnToggleSwitchChanged(object sender, ToggledEventArgs e)
+        {
+            // Update the IsAddedToQueue property of the corresponding song
+            if (sender is Switch toggleSwitch && toggleSwitch.BindingContext is Song song)
+            {
+                song.IsAddedToQueue = e.Value;
+            }
         }
     }
 
