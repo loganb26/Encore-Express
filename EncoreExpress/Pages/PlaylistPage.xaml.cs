@@ -1,106 +1,68 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.Storage; // Correct namespace for file operations in MAUI
 using System.Threading.Tasks;
+using System;
 
-namespace EncoreExpress.ConsoleApp
+namespace EncoreExpress.Pages
 {
-    class Program
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PlaylistPage : ContentPage
     {
-        static List<Song> Songs = new List<Song>();
+        public ObservableCollection<Song> Songs { get; set; }
 
-        static async Task Main(string[] args)
+        public PlaylistPage()
         {
-            InitializeSongs();
+            InitializeComponent();
 
-            bool exit = false;
-            while (!exit)
+            // Initialize song list 
+            Songs = new ObservableCollection<Song>
             {
-                DisplayMenu();
-                string choice = Console.ReadLine();
-                switch (choice)
+                new Song { Name = "Song 1", IsAddedToQueue = false },
+                new Song { Name = "Song 2", IsAddedToQueue = false },
+                // Add more songs as needed
+            };
+
+            PlaylistView.ItemsSource = Songs;
+        }
+
+        public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
                 {
-                    case "1":
-                        DisplaySongs();
-                        break;
-                    case "2":
-                        await AddSongFromFileAsync();
-                        break;
-                    case "3":
-                        ToggleSongQueueStatus();
-                        break;
-                    case "4":
-                        exit = true;
-                        break;
-                    default:
-                        Console.WriteLine("Invalid option, try again.");
-                        break;
+                    { DevicePlatform.iOS, new[] { "public.audio" } }, // for iOS
+                    { DevicePlatform.Android, new[] { "audio/*" } }, // for Android
+                    { DevicePlatform.WinUI, new[] { ".mp3", ".wav", ".aac" } }, // for Windows
+                    { DevicePlatform.MacCatalyst, new[] { "public.audio" } } // for Mac Catalyst
+                });
+
+                var options = new PickOptions
+                {
+                    PickerTitle = "Please select a music file",
+                    FileTypes = customFileType
+                };
+
+                var result = await FilePicker.PickAsync(options);
+
+                if (result != null)
+                {
+                    Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
                 }
             }
-        }
-
-        static void InitializeSongs()
-        {
-            Songs.Add(new Song { Name = "Song 1", IsAddedToQueue = false });
-            Songs.Add(new Song { Name = "Song 2", IsAddedToQueue = false });
-            // Add more songs as needed
-        }
-
-        static void DisplayMenu()
-        {
-            Console.WriteLine("\nChoose an option:");
-            Console.WriteLine("1 - Display Songs");
-            Console.WriteLine("2 - Add Song from File");
-            Console.WriteLine("3 - Toggle Song Queue Status");
-            Console.WriteLine("4 - Exit");
-        }
-
-        static void DisplaySongs()
-        {
-            foreach (var song in Songs)
+            catch (Exception ex)
             {
-                Console.WriteLine($"Name: {song.Name}, In Queue: {song.IsAddedToQueue}");
+                Console.WriteLine("Error picking file: " + ex.Message);
+                // Optionally, display an alert to the user
+                await DisplayAlert("Error", "Failed to pick file.", "OK");
             }
         }
 
-        static async Task AddSongFromFileAsync()
+        public async void OnBackButtonClicked(object sender, EventArgs e)
         {
-            Console.WriteLine("Enter file path:");
-            string filePath = Console.ReadLine();
-            if (File.Exists(filePath))
-            {
-                try
-                {
-                    var fileName = Path.GetFileName(filePath);
-                    Songs.Add(new Song { Name = fileName, IsAddedToQueue = false });
-                    Console.WriteLine("Song added successfully.");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to add song from file: {ex.Message}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("File does not exist. Please check the path and try again.");
-            }
-        }
-
-        static void ToggleSongQueueStatus()
-        {
-            Console.WriteLine("Enter the song name to toggle:");
-            string name = Console.ReadLine();
-            var song = Songs.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            if (song != null)
-            {
-                song.IsAddedToQueue = !song.IsAddedToQueue;
-                Console.WriteLine($"{song.Name} queue status updated to {song.IsAddedToQueue}.");
-            }
-            else
-            {
-                Console.WriteLine("Song not found.");
-            }
+            await Shell.Current.GoToAsync("//HomePage");
         }
     }
 
@@ -110,5 +72,3 @@ namespace EncoreExpress.ConsoleApp
         public bool IsAddedToQueue { get; set; }
     }
 }
-
-

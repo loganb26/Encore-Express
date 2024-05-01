@@ -4,38 +4,24 @@
              x:Class="EncoreExpress.Pages.PlayerPage"
              Title="PlayerPage">
     <ScrollView>
-        <!-- Wrap all elements inside a StackLayout -->
-        <StackLayout Margin="10" Spacing="10">
+        <VerticalStackLayout HorizontalOptions="Center">
+            <Image Source="playlist_50x50.png" WidthRequest="50" HeightRequest="50"/>
+            <HorizontalStackLayout>
+                <Image Source="back_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Image Source="play_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Image Source="skip_50x50.png" WidthRequest="50" HeightRequest="50"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Image Source="low_volume_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <Slider x:Name="volumeControl" Minimum="0" Maximum="100" WidthRequest="50"/>
+                <Image Source="volume_50x50.png" WidthRequest="50" HeightRequest="50"/>
+                <HorizontalStackLayout>
+                    <Label Text="The volume is "/>
+                    <Label Text="{Binding Path=Value}" BindingContext="{x:Reference volumeControl}"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            
 
-            <!-- Row 1: Song Name -->
-            <Label x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
-                   FontSize="20"/>
-
-            <!-- Row 2: Slider for Song -->
-            <Slider x:Name="positionSlider" Minimum="0" Maximum="100" WidthRequest="150" ValueChanged="PositionSlider_ValueChanged"/>
-            <Label x:Name="positionLabel" Text="0:00 / 0:00" HorizontalOptions="Center" />
-
-            <!-- Row 3: Back, Pause, Forward Buttons -->
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
-                <ImageButton x:Name="pauseButton" Source="pause_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="PauseButton_Clicked"/>
-                <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
-            </StackLayout>
-
-            <!-- Row 4: Volume Slider -->
-            <StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <ImageButton Source="low_volume_50x50.png" WidthRequest="50" HeightRequest="50" />
-                    <Slider x:Name="volumeControl" Minimum="0" Maximum="100" WidthRequest="150" />
-                    <ImageButton Source="volume_50x50.png" WidthRequest="50" HeightRequest="50" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="The volume is " />
-                    <Label Text="{Binding Path=Value}" BindingContext="{x:Reference volumeControl}" />
-                </StackLayout>
-                <ImageButton Source="playlist_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="AddSongButton_Clicked" />
-            </StackLayout>
-
-        </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
