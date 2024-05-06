@@ -2,27 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EncoreExpress.Pages.PlayerPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="PlayerPage">
-    <ScrollView>
-        <!-- Wrap all elements inside a StackLayout -->
+
+    <toolkit:MediaElement
+        WidthRequest="640" HeightRequest="320"
+        Source="embed://jazz.mp3"
+        ShouldAutoPlay="True">
+        
+    </toolkit:MediaElement>
+    <!--<ScrollView>
+        --><!-- Wrap all elements inside a StackLayout --><!--
         <StackLayout Margin="10" Spacing="10">
 
-            <!-- Row 1: Song Name -->
+            --><!-- Row 1: Song Name --><!--
             <Label x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
                    FontSize="20"/>
 
-            <!-- Row 2: Slider for Song -->
+            --><!-- Row 2: Slider for Song --><!--
             <Slider x:Name="positionSlider" Minimum="0" Maximum="100" WidthRequest="150" ValueChanged="PositionSlider_ValueChanged"/>
             <Label x:Name="positionLabel" Text="0:00 / 0:00" HorizontalOptions="Center" />
 
-            <!-- Row 3: Back, Pause, Forward Buttons -->
+            --><!-- Row 3: Back, Pause, Forward Buttons --><!--
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
                 <ImageButton x:Name="pauseButton" Source="pause_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="PauseButton_Clicked"/>
                 <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
             </StackLayout>
 
-            <!-- Row 4: Volume Slider -->
+            --><!-- Row 4: Volume Slider --><!--
             <StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <ImageButton Source="low_volume_50x50.png" WidthRequest="50" HeightRequest="50" />
@@ -37,5 +45,5 @@
             </StackLayout>
 
         </StackLayout>
-    </ScrollView>
+    </ScrollView>-->
 </ContentPage>
