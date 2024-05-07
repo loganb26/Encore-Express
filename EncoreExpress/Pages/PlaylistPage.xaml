@@ -1,37 +1,20 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8" ?>
-=======
-﻿<?xml version="1.0" encoding="utf-8" ?>
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EncoreExpress.Pages.PlaylistPage"
-             Title="PlaylistPage">
-    <VerticalStackLayout>
-        <Label 
-<<<<<<< HEAD
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-=======
-            Text="Playlist Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Playlist">
 
-        <ListView x:Name="PlaylistView"> <!-- Correct the name from 'ListVeiw' to 'ListView' -->
+    <StackLayout>
+        <ListView x:Name="songsListView"
+                  ItemsSource="{Binding Songs}"
+                  ItemSelected="SongsListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}" />
-                            <Switch IsToggled="{Binding IsAddedToQueue}" /> <!-- Correct the Binding syntax -->
-                        </StackLayout>
-                    </ViewCell>
+                    <TextCell Text="{Binding}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--Button Text="Browse Local Songs" Clicked="OnBrowseLocalSongsClicked" /-->
-        <!--Button Text="Back" Clicked="OnBackButtonClicked" /-->
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
-    </VerticalStackLayout>
+
+        <Button Text="Upload Songs" Clicked="AddSongsButton_Clicked"/>
+    </StackLayout>
+
 </ContentPage>
