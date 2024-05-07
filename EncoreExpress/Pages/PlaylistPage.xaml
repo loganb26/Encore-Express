@@ -4,6 +4,9 @@
              Title="Playlist">
 
     <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+            <ImageButton Margin="20" x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" Clicked="OnMenuClicked" BackgroundColor="Transparent"/>
+        </StackLayout>
         <ListView x:Name="songsListView"
                   ItemsSource="{Binding Songs}"
                   ItemSelected="SongsListView_ItemSelected">
