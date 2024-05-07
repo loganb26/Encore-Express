@@ -12,8 +12,6 @@ namespace EncoreExpress.Pages
         private int currentSongIndex = 0; // Index of the current song
         private bool isPlaying = false; // Flag to track if the player is currently playing
 
-        
-
 
         public PlayerPage()
         {
@@ -26,10 +24,6 @@ namespace EncoreExpress.Pages
 
             PlayCurrentSong(); // Start playing the first song
         }
-
-       
-
-        
 
         private void BackButton_Clicked(object sender, EventArgs e)
         {
@@ -101,6 +95,10 @@ namespace EncoreExpress.Pages
             App.Current.MainPage = new PlaylistPage();
         }
 
-
+        private async void OnMenuClicked(object sender, EventArgs e)
+        {
+            //This is wrong just creates new page !have to change
+            await Navigation.PushAsync(new MenuPage());
+        }
     }
 }
