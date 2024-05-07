@@ -1,73 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EncoreExpress.Pages.PlayerPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="PlayerPage">
-<<<<<<< HEAD
 
-    <toolkit:MediaElement
-        WidthRequest="640" HeightRequest="320"
-        Source="embed://jazz.mp3"
-        ShouldAutoPlay="True">
-        
-    </toolkit:MediaElement>
-    <!--<ScrollView>
-        --><!-- Wrap all elements inside a StackLayout --><!--
-        <StackLayout Margin="10" Spacing="10">
+    <Grid RowDefinitions="Auto,Auto,Auto" >
+        <Label Grid.Row="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
+                   FontSize="20" Margin="60"/>
 
-            --><!-- Row 1: Song Name --><!--
-            <Label x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
-                   FontSize="20"/>
+        <toolkit:MediaElement Grid.Row="1"
+            WidthRequest="640" HeightRequest="320"
+            Source="embed://jazz.mp3"
+            ShouldAutoPlay="False"/>
 
-            --><!-- Row 2: Slider for Song --><!--
-            <Slider x:Name="positionSlider" Minimum="0" Maximum="100" WidthRequest="150" ValueChanged="PositionSlider_ValueChanged"/>
-            <Label x:Name="positionLabel" Text="0:00 / 0:00" HorizontalOptions="Center" />
 
-            --><!-- Row 3: Back, Pause, Forward Buttons --><!--
-=======
-    <ScrollView>
-        <!-- Wrap all elements inside a StackLayout -->
-        <StackLayout Margin="10" Spacing="10">
 
-            <!-- Row 1: Song Name -->
-            <Label x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
-                   FontSize="20"/>
-
-            <!-- Row 2: Slider for Song -->
-            <Slider x:Name="positionSlider" Minimum="0" Maximum="100" WidthRequest="150" ValueChanged="PositionSlider_ValueChanged"/>
-            <Label x:Name="positionLabel" Text="0:00 / 0:00" HorizontalOptions="Center" />
-
-            <!-- Row 3: Back, Pause, Forward Buttons -->
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
-                <ImageButton x:Name="pauseButton" Source="pause_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="PauseButton_Clicked"/>
-                <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
-            </StackLayout>
-
-<<<<<<< HEAD
-            --><!-- Row 4: Volume Slider --><!--
-=======
-            <!-- Row 4: Volume Slider -->
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
-            <StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <ImageButton Source="low_volume_50x50.png" WidthRequest="50" HeightRequest="50" />
-                    <Slider x:Name="volumeControl" Minimum="0" Maximum="100" WidthRequest="150" />
-                    <ImageButton Source="volume_50x50.png" WidthRequest="50" HeightRequest="50" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="The volume is " />
-                    <Label Text="{Binding Path=Value}" BindingContext="{x:Reference volumeControl}" />
-                </StackLayout>
-                <ImageButton Source="playlist_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="AddSongButton_Clicked" />
-            </StackLayout>
-
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2">
+            <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
+            <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
         </StackLayout>
-<<<<<<< HEAD
-    </ScrollView>-->
-=======
-    </ScrollView>
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
+    </Grid>
 </ContentPage>
