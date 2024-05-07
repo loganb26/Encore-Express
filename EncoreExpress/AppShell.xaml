@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="EncoreExpress.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:EncoreExpress.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Title="EncoreExpress">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:PlayerPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Playlist"
+        ContentTemplate="{DataTemplate local:PlaylistPage}"
+        Route="PlaylistPage" />
+
+</Shell>
