@@ -95,5 +95,12 @@ namespace EncoreExpress.Pages
             }
         }
 
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new PlaylistPage();
+        }
+
+
     }
 }
