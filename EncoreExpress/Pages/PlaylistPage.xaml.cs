@@ -1,75 +1,95 @@
-<<<<<<< HEAD
-namespace EncoreExpress.Pages;
-=======
-using System.Collections.ObjectModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
-using Microsoft.Maui.Storage; // Correct namespace for file operations in MAUI
-using System.Threading.Tasks;
 using System;
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
+using System.Collections.Generic;
 
-public partial class PlaylistPage : ContentPage
+
+namespace EncoreExpress.Pages
 {
-    public PlaylistPage()
+    public partial class PlaylistPage : ContentPage
     {
-<<<<<<< HEAD
-        InitializeComponent();
-=======
-        public ObservableCollection<Song> Songs { get; set; }
+        private const string SongsKey = "SongsList";
+
+        public List<string> Songs { get; set; }
 
         public PlaylistPage()
         {
             InitializeComponent();
 
-            // Initialize song list 
-            Songs = new ObservableCollection<Song>
-            {
-                new Song { Name = "Song 1", IsAddedToQueue = false },
-                new Song { Name = "Song 2", IsAddedToQueue = false },
-                // Add more songs as needed
-            };
-
-            PlaylistView.ItemsSource = Songs;
+            // Load songs from secure storage on page initialization
+            LoadSongsFromSecureStorage();
         }
 
-        public async void OnBrowseLocalSongsClicked(object sender, EventArgs e)
+        private async void LoadSongsFromSecureStorage()
         {
             try
             {
-                var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-                {
-                    { DevicePlatform.iOS, new[] { "public.audio" } }, // for iOS
-                    { DevicePlatform.Android, new[] { "audio/*" } }, // for Android
-                    { DevicePlatform.WinUI, new[] { ".mp3", ".wav", ".aac" } }, // for Windows
-                    { DevicePlatform.MacCatalyst, new[] { "public.audio" } } // for Mac Catalyst
-                });
+                // Retrieve the list of songs from Secure Storage
+                var songsString = await SecureStorage.GetAsync(SongsKey);
+                Songs = !string.IsNullOrEmpty(songsString) ? new List<string>(songsString.Split(',')) : new List<string>();
 
+                // Update the ListView to reflect the loaded songs
+                songsListView.ItemsSource = Songs;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during data loading
+                await DisplayAlert("Error", $"Error: {ex.Message}", "OK");
+            }
+        }
+
+        private async void SaveSongsToSecureStorage()
+        {
+            try
+            {
+                // Save the list of songs to Secure Storage as a comma-separated string
+                await SecureStorage.SetAsync(SongsKey, string.Join(",", Songs));
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during data saving
+                await DisplayAlert("Error", $"Error: {ex.Message}", "OK");
+            }
+        }
+
+        private async void AddSongsButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
                 var options = new PickOptions
                 {
-                    PickerTitle = "Please select a music file",
-                    FileTypes = customFileType
+                    PickerTitle = "Select one or more songs"
                 };
 
-                var result = await FilePicker.PickAsync(options);
-
-                if (result != null)
+                var selectedFiles = await FilePicker.PickMultipleAsync(options);
+                if (selectedFiles != null)
                 {
-                    Songs.Add(new Song { Name = result.FileName, IsAddedToQueue = false });
+                    foreach (var file in selectedFiles)
+                    {
+                        // Add the selected file names to the list of songs
+                        Songs.Add(file.FileName);
+                    }
+
+                    // Update the ListView to reflect the changes
+                    songsListView.ItemsSource = null;
+                    songsListView.ItemsSource = Songs;
+
+                    // Save uploaded songs to Secure Storage
+                    SaveSongsToSecureStorage();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error picking file: " + ex.Message);
-                // Optionally, display an alert to the user
-                await DisplayAlert("Error", "Failed to pick file.", "OK");
+                // Handle any exceptions that may occur during file picking
+                await DisplayAlert("Error", $"Error: {ex.Message}", "OK");
             }
         }
 
-        public async void OnBackButtonClicked(object sender, EventArgs e)
+        private async void SongsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Shell.Current.GoToAsync("//HomePage");
+            if (e.SelectedItem is string selectedSong)
+            {
+                // Navigate to the PlayerPage and pass the selected song
+                await Navigation.PushAsync(new PlayerPage());
+            }
         }
->>>>>>> 1f0c31c58fa2019c48f59a216d528e9761afdd63
     }
 }
