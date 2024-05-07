@@ -4,20 +4,23 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="PlayerPage">
 
-    <Grid RowDefinitions="Auto,Auto,Auto" >
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" >
         <Label Grid.Row="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
                    FontSize="20" Margin="60"/>
 
-        <toolkit:MediaElement Grid.Row="1"
-            WidthRequest="640" HeightRequest="320"
-            Source="embed://jazz.mp3"
-            ShouldAutoPlay="False"/>
-
-
+        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
+            <toolkit:MediaElement x:Name="mediaElement1" Source="jazz.mp3" ShouldAutoPlay="False"/>
+            <!--<toolkit:MediaElement x:Name="mediaElement2" Source="lofi-vibes.mp3" ShouldAutoPlay="False"/>
+            <toolkit:MediaElement x:Name="mediaElement3" Source="glass-of-wine.mp3" ShouldAutoPlay="False"/>-->
+        </StackLayout>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2">
             <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
             <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
         </StackLayout>
+
+        <Button Grid.Row="3" Text="Add" Clicked="Button_Clicked" WidthRequest="80" HeightRequest="30" Margin="0,20"/>
+
     </Grid>
 </ContentPage>
