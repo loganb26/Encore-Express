@@ -91,5 +91,11 @@ namespace EncoreExpress.Pages
                 await Navigation.PushAsync(new PlayerPage());
             }
         }
+
+        private void OnMenuClicked(object sender, EventArgs e)
+        {
+            //This is wrong just creates new page !have to change
+            App.Current.MainPage = new MenuPage();
+        }
     }
 }
