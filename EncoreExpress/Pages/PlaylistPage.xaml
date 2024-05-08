@@ -5,7 +5,7 @@
 
     <StackLayout>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
-            <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent"/>
+            <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" Clicked="Menu" BackgroundColor="Transparent"/>
         </StackLayout>
         <ListView x:Name="songsListView"
                   ItemsSource="{Binding Songs}"
