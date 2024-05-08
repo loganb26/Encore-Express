@@ -4,8 +4,13 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="PlayerPage">
 
-
+    
+    
     <Grid RowDefinitions="Auto,Auto,Auto,*" >
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
+            <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent"/>
+        </StackLayout>
+        
         <Label Grid.Row="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
                    FontSize="20" Margin="60"/>
 
@@ -16,8 +21,8 @@
         </StackLayout>
         
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2">
-            <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked"/>
-            <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked"/>
+            <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked" BackgroundColor="Transparent"/>
+            <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked" BackgroundColor="Transparent"/>
         </StackLayout>
 
         <Button Grid.Row="3" Text="Add" Clicked="Button_Clicked" WidthRequest="80" HeightRequest="30" Margin="0,20"/>
