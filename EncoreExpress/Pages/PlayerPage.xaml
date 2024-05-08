@@ -6,7 +6,7 @@
 
     
     
-    <Grid RowDefinitions="Auto,Auto,Auto,*" >
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" >
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
             <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent"/>
         </StackLayout>
@@ -16,18 +16,28 @@
 
         <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
             <toolkit:MediaElement x:Name="mediaElement1" Source="embed://jazz.mp3" ShouldAutoPlay="False" ShouldShowPlaybackControls="True"/>
-            <!--<toolkit:MediaElement x:Name="mediaElement2" Source="lofi-vibes.mp3" ShouldAutoPlay="False"/>
-            <toolkit:MediaElement x:Name="mediaElement3" Source="glass-of-wine.mp3" ShouldAutoPlay="False"/>-->
+            
         </StackLayout>
-        
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2" Margin="0,0,180,0">
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Mute" VerticalOptions="Center"/>
+                <Switch x:Name="muteSwitch" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
             <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked" BackgroundColor="Transparent"/>
             <ImageButton x:Name="shuffleButton" Source="shuffle_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ShuffleButton_Clicked" BackgroundColor="Transparent"/>
             <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked" BackgroundColor="Transparent"/>
         </StackLayout>
 
-        <Button Grid.Row="3" Text="Add" Clicked="Button_Clicked" WidthRequest="80" HeightRequest="30" Margin="0,20"/>
-        
+        <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30" Margin="0,0,270,0" >
+            <Label Text="Playback Speed:" VerticalOptions="Center"/>
+            <Picker x:Name="speedPicker" WidthRequest="150" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        <Button Grid.Row="4" Text="Add" Clicked="Button_Clicked" WidthRequest="80" HeightRequest="30" Margin="0,20"/>
+       
+
+
 
     </Grid>
 </ContentPage>
