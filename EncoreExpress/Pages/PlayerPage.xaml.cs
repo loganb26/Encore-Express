@@ -70,14 +70,38 @@ namespace EncoreExpress.Pages
             PlayCurrentSong();
         }
 
-        private void PlayCurrentSong()
+        private void ShowHistoryPopup(object sender, EventArgs e)
         {
-            string currentSongName = App.SongList[currentSongIndex].songName;
-            string fileName = App.SongList[currentSongIndex].songPath;
-            songNameLabel.Text = currentSongName;
-            mediaElement1.Source = MediaSource.FromFile(fileName);
-            mediaElement1.Play();
+            var popup = new HistoryPopup();
+            this.ShowPopup(popup);
         }
+
+        private void ClosePopup()
+        {
+            if (this.FindByName<Popup>("historyPopup") is Popup popup)
+            {
+                this.HidePopup(popup);
+            }
+        }
+       private void PlayCurrentSong()
+{
+    string currentSongName = App.SongList[currentSongIndex].songName;
+    string fileName = App.SongList[currentSongIndex].songPath;
+    
+    // Update the Label to display the current song name
+    songNameLabel.Text = currentSongName;
+
+    // Set the media element's source and play the song
+    mediaElement1.Source = MediaSource.FromFile(fileName);
+    mediaElement1.Play();
+
+    // Add the song to the play history, ensuring not to add duplicates if the song is played again consecutively
+    if (App.PlayHistory.Count == 0 || App.PlayHistory.Last().songName != currentSongName)
+    {
+        App.PlayHistory.Add(App.SongList[currentSongIndex]);
+    }
+}
+
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
