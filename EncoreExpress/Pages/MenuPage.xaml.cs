@@ -10,27 +10,10 @@ public partial class MenuPage : ContentPage
 	{
 		
 		InitializeComponent();
-		LoadPrevSongs();
+		
 
 	}
-	private void LoadPrevSongs()
-	{
-        songs = new ObservableCollection<Song>();
-        if (App.SongList.Count > 0)
-        {
-            foreach (Song song in App.SongList)
-            {
-                songs.Add(song);
-            }
-            noSongs.Text = "";
-            prevSongs.ItemsSource = songs;
-
-        }
-        else
-        {
-            noSongs.Text = "There are no previously played songs.";
-        }
-    }
+	
 
     private void GoToPlayer(object sender, EventArgs e)
     {
