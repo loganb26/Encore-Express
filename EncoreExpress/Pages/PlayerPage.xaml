@@ -10,10 +10,14 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
             <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" Clicked="Menu" BackgroundColor="Transparent"/>
         </StackLayout>
-        
-        <Label Grid.Row="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
+
+        <Grid ColumnDefinitions="*,50" Grid.Row="0">
+            <Label Grid.Column="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
                    FontSize="20" Margin="60"/>
 
+        <ImageButton Grid.Column="1" x:Name="settingsButton" Source="settings.png" WidthRequest="50" HeightRequest="50" Clicked="settings" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"/>
+        </Grid>
+    
         <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
             <toolkit:MediaElement x:Name="mediaElement1" Source="embed://jazz.mp3" ShouldAutoPlay="False" ShouldShowPlaybackControls="True"/>
             
