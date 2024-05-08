@@ -99,5 +99,9 @@ namespace EncoreExpress.Pages
         {
             App.Current.MainPage = new PlayerPage();
         }
+        private void Menu(object sender, EventArgs e)
+{
+    App.Current.MainPage = new MenuPage();
+}
     }
 }
