@@ -4,9 +4,24 @@
              x:Class="EncoreExpress.Pages.MenuPage"
              Title="MenuPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="Main Menu" HorizontalOptions="Center" FontSize="40"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Go to the SongPlayer"  FontSize="20" Margin="20" Clicked="GoToPlayer"/>
+            <Button Text="Make a playlist"  FontSize="20" Margin="20" Clicked="GoToPlaylist"/>
+        </HorizontalStackLayout>
+
+        <Label Text="Previously Played" HorizontalOptions="Center" FontSize="30"/>
+        <Label x:Name="noSongs" Text=""/>
+
+        <CollectionView x:Name="prevSongs">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label Text="{Binding}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
