@@ -5,9 +5,9 @@
 
     <StackLayout>
         <Label Text="Settings" HorizontalOptions="Center" FontSize="40" Margin="30"/>
-        
+
         <StackLayout>
-            <Label Text="Light/Dark Mode" HorizontalOptions="Center"/>
+            <Label Text="Light/Dark Mode" HorizontalOptions="Center" FontSize="20"/>
             <Switch x:Name="modeSwitch" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Toggled="LightModeSwitch_Toggled"/>
         </StackLayout>
 
