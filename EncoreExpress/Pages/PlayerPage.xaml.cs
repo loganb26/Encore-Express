@@ -143,6 +143,10 @@ namespace EncoreExpress.Pages
                 mediaElement1.Volume = 1.0;
             }
         }
+        private void Menu(object sender, EventArgs e)
+{
+    App.Current.MainPage = new MenuPage();
+}
     }
 }
 
