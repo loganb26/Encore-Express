@@ -1,0 +1,55 @@
+is_global = true
+build_property.TargetFramework = net8.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = EncoreExpress
+build_property.ProjectDir = E:\downloads\Encore-Express-master\Encore-Express-master\EncoreExpress\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/Pages/MenuPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.Pages.MenuPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\MenuPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\MenuPage.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/Pages/PlayerPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.Pages.PlayerPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\PlayerPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\PlayerPage.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/Pages/PlaylistPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.Pages.PlaylistPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\PlaylistPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\PlaylistPage.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[E:/downloads/Encore-Express-master/Encore-Express-master/EncoreExpress/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = EncoreExpress.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
