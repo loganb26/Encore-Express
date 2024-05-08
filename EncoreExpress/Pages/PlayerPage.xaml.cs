@@ -23,22 +23,21 @@ namespace EncoreExpress.Pages
 
             Song song1 = new Song { songName = "sound.mp3", songPath = AppDomain.CurrentDomain.BaseDirectory + "sound.mp3" };
             App.SongList.Add(song1);
-            
+
             Song song2 = new Song { songName = "sound1.mp3", songPath = AppDomain.CurrentDomain.BaseDirectory + "sound1.mp3" };
             App.SongList.Add(song2);
 
             PlayCurrentSong(); // Start playing the first song
 
-            
 
-            //for playback speed
+
+            // Set event handlers for playback speed and mute options
             PopulateSpeedOptions();
-            mediaElement1.Speed = GetSelectedSpeed();
             speedPicker.SelectedIndexChanged += SpeedPicker_SelectedIndexChanged;
-
-            //for mute option
-          
             muteSwitch.Toggled += MuteSwitch_Toggled;
+
+            // Initialize the playback speed after populating the options
+            mediaElement1.Speed = GetSelectedSpeed();
         }
 
         private void BackButton_Clicked(object sender, EventArgs e)
@@ -144,9 +143,9 @@ namespace EncoreExpress.Pages
             }
         }
         private void Menu(object sender, EventArgs e)
-{
-    App.Current.MainPage = new MenuPage();
-}
+        {
+            App.Current.MainPage = new MenuPage();
+        }
 
         private void settings(object sender, EventArgs e)
         {
