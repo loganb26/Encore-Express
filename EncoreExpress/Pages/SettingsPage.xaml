@@ -6,12 +6,12 @@
     <StackLayout>
         <StackLayout>
             <Label Text="Mode"/>
-            <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand"/>
+            <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand" Toggled="LightModeSwitch_Toggled"/>
         </StackLayout>
-        
-       
 
-        
+
+
+
         <Button Text="Back to Player" Clicked="GoBackToPlayerPage" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
     </StackLayout>
 </ContentPage>
