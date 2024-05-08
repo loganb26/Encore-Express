@@ -4,7 +4,7 @@ Encore Express; simple music player.
 A simple, intuitive music player that allows the user to play songs pre-loaded in the player and from their own computer. 
 
 # Goals
-Goal is to offer more settings than those of a regular music player; such as, playback speed and changing between light and dark mode. 
+Goal is to offer more settings than those of a regular music player; such as, playback speed.
 Another goal was to create a song queuing and shuffling system to allow the user to listen to songs in a different way.
 
 # Usage
