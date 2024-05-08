@@ -4,18 +4,15 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="PlayerPage">
 
-    
-    
+
+
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" >
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
-            <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" Clicked="Menu" BackgroundColor="Transparent"/>
-        </StackLayout>
 
-        <Grid ColumnDefinitions="*,50" Grid.Row="0">
-            <Label Grid.Column="0" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
+        <Grid ColumnDefinitions="50,*,50" Grid.Row="0">
+            <ImageButton Grid.Column="0" Margin="10" x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" Clicked="Menu" BackgroundColor="Transparent"/>
+            <Label Grid.Column="1" x:Name="songNameLabel" Text="Song 1" HorizontalOptions="Center" VerticalOptions="Center"
                    FontSize="20" Margin="60"/>
-
-        <ImageButton Grid.Column="1" x:Name="settingsButton" Source="settings.png" WidthRequest="50" HeightRequest="50" Clicked="settings" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"/>
+            <ImageButton Grid.Column="2" x:Name="settingsButton" Source="settings.png" WidthRequest="50" HeightRequest="50" Clicked="settings" BackgroundColor="Transparent" HorizontalOptions="End" Margin="10"/>
         </Grid>
     
         <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center">
