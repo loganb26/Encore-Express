@@ -4,8 +4,12 @@
              Title="Settings">
 
     <StackLayout>
+        <StackLayout>
+            <Label Text="Mode"/>
+            <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
         
-        <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand"/>
+       
 
         
         <Button Text="Back to Player" Clicked="GoBackToPlayerPage" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
