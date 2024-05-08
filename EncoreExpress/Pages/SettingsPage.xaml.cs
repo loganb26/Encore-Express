@@ -8,8 +8,15 @@ namespace EncoreExpress.Pages
         public SettingPage()
         {
             InitializeComponent();
+            LoadThemeSetting();
+        }
 
-            // Other initialization code
+        private void LoadThemeSetting()
+        {
+            // Load the theme setting from preferences
+            bool isLightMode = Preferences.Get("themePreference", true); // Default to light mode if no preference is set
+            modeSwitch.IsToggled = isLightMode;
+            Application.Current.UserAppTheme = isLightMode ? AppTheme.Light : AppTheme.Dark;
         }
 
         private void LightModeSwitch_Toggled(object sender, ToggledEventArgs e)
@@ -18,19 +25,27 @@ namespace EncoreExpress.Pages
             {
                 // Switch to light mode
                 Application.Current.UserAppTheme = AppTheme.Light;
+                Preferences.Set("themePreference", true);
             }
             else
             {
                 // Switch to dark mode
                 Application.Current.UserAppTheme = AppTheme.Dark;
+                Preferences.Set("themePreference", false);
             }
         }
 
         private void GoBackToPlayerPage(object sender, EventArgs e)
         {
-            App.Current.MainPage = new PlayerPage();
+            // Assuming you want to navigate back, check if Navigation is setup
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                Navigation.PopAsync();
+            }
+            else
+            {
+                App.Current.MainPage = new PlayerPage();
+            }
         }
-
-        // Other methods
     }
 }
