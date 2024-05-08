@@ -4,9 +4,11 @@
              Title="Settings">
 
     <StackLayout>
+        <Label Text="Settings" HorizontalOptions="Center" FontSize="40" Margin="30"/>
+        
         <StackLayout>
-            <Label Text="Mode"/>
-            <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand" Toggled="LightModeSwitch_Toggled"/>
+            <Label Text="Light/Dark Mode" HorizontalOptions="Center"/>
+            <Switch x:Name="modeSwitch" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Toggled="LightModeSwitch_Toggled"/>
         </StackLayout>
 
 
