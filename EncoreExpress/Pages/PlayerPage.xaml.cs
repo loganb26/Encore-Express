@@ -23,11 +23,22 @@ namespace EncoreExpress.Pages
 
             Song song1 = new Song { songName = "sound.mp3", songPath = AppDomain.CurrentDomain.BaseDirectory + "sound.mp3" };
             App.SongList.Add(song1);
-
+            
             Song song2 = new Song { songName = "sound1.mp3", songPath = AppDomain.CurrentDomain.BaseDirectory + "sound1.mp3" };
             App.SongList.Add(song2);
 
             PlayCurrentSong(); // Start playing the first song
+
+            
+
+            //for playback speed
+            PopulateSpeedOptions();
+            mediaElement1.Speed = GetSelectedSpeed();
+            speedPicker.SelectedIndexChanged += SpeedPicker_SelectedIndexChanged;
+
+            //for mute option
+          
+            muteSwitch.Toggled += MuteSwitch_Toggled;
         }
 
         private void BackButton_Clicked(object sender, EventArgs e)
@@ -83,5 +94,55 @@ namespace EncoreExpress.Pages
         {
             App.Current.MainPage = new PlaylistPage();
         }
+        private void PopulateSpeedOptions()
+        {
+            speedPicker.Items.Add("0.5x");
+            speedPicker.Items.Add("0.75x");
+            speedPicker.Items.Add("1.0x");
+            speedPicker.Items.Add("1.25x");
+            speedPicker.Items.Add("1.5x");
+            speedPicker.Items.Add("2.0x");
+        }
+        // Event handler for speed picker selection changed
+        private void SpeedPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Check if an item is selected
+            if (speedPicker.SelectedItem != null)
+            {
+                // Set the playback speed of the media element based on the selected value
+                mediaElement1.Speed = GetSelectedSpeed();
+            }
+        }
+
+        // Get the selected speed from the picker
+        private double GetSelectedSpeed()
+        {
+            // Ensure that a default speed is returned if no item is selected
+            if (speedPicker.SelectedItem == null)
+            {
+                return 1.0; // Default speed (1.0x)
+            }
+
+            // Extract the selected speed from the picker's selected item
+            string selectedSpeedText = speedPicker.SelectedItem.ToString().Replace("x", "");
+            return double.Parse(selectedSpeedText);
+        }
+        private void MuteSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+            // Set the mute state of the media element based on the toggle switch
+            mediaElement1.ShouldMute = e.Value;
+
+            // Ensure that when ShouldMute is true, the volume is set to 0
+            if (e.Value)
+            {
+                mediaElement1.Volume = 0;
+            }
+            else
+            {
+                // Set the volume back to normal when ShouldMute is false
+                mediaElement1.Volume = 1.0;
+            }
+        }
     }
 }
+
