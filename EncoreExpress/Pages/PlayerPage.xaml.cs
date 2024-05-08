@@ -22,26 +22,21 @@ namespace EncoreExpress.Pages
             // Add sample songs to the list
             Song song = new Song();
             song.songName = "jazz.mp3";
-            song.songPath = "E:\\downloads\\Encore-Express-master\\Encore-Express-master\\EncoreExpress\\Resources\\Raw\\jazz.mp3";
+            song.songPath = AppDomain.CurrentDomain.BaseDirectory + "jazz.mp3";
             App.SongList.Add(song);
+
             Song song1 = new Song();
             song1.songName = "sound.mp3";
-            song1.songPath = "E:\\downloads\\Encore-Express-master\\Encore-Express-master\\EncoreExpress\\Resources\\Raw\\sound.mp3";
+            song1.songPath = AppDomain.CurrentDomain.BaseDirectory + "sound.mp3";
             App.SongList.Add(song1);
+            
             Song song2 = new Song();
             song2.songName = "sound1.mp3";
-            song2.songPath = "E:\\downloads\\Encore-Express-master\\Encore-Express-master\\EncoreExpress\\Resources\\Raw\\sound1.mp3";
+            song2.songPath = AppDomain.CurrentDomain.BaseDirectory + "sound1.mp3";
             App.SongList.Add(song2);
-            /*songs.Add("jazz.mp3");
-            songs.Add("sound.mp3");
-            songs.Add("sound1.mp3");*/
 
             PlayCurrentSong(); // Start playing the first song
         }
-
-       
-
-
 
 
         private void BackButton_Clicked(object sender, EventArgs e)
@@ -80,8 +75,6 @@ namespace EncoreExpress.Pages
             songNameLabel.Text = currentSongName;
             mediaElement1.Source = MediaSource.FromFile(fileName); 
             mediaElement1.Play();
-
-            
         }
 
         
@@ -115,7 +108,5 @@ namespace EncoreExpress.Pages
         {
             App.Current.MainPage = new PlaylistPage();
         }
-
-
     }
 }
