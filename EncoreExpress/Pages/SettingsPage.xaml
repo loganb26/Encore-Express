@@ -4,16 +4,10 @@
              Title="Settings">
 
     <StackLayout>
-        <!-- Mute Switch -->
-        <Switch x:Name="muteSwitch" VerticalOptions="CenterAndExpand"/>
+        
+        <Switch x:Name="modeSwitch" VerticalOptions="CenterAndExpand"/>
 
-        <!-- Playback Speed Picker -->
-        <Picker x:Name="speedPicker" VerticalOptions="CenterAndExpand"/>
-
-        <!-- Default Volume Slider -->
-        <Slider x:Name="volumeSlider" VerticalOptions="CenterAndExpand"/>
-
-        <!-- Button to go back to PlayerPage -->
+        
         <Button Text="Back to Player" Clicked="GoBackToPlayerPage" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
     </StackLayout>
 </ContentPage>
