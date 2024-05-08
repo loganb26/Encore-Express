@@ -4,6 +4,9 @@
              Title="Playlist">
 
     <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="20">
+            <ImageButton x:Name="menuButton" Source="menu.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Transparent"/>
+        </StackLayout>
         <ListView x:Name="songsListView"
                   ItemsSource="{Binding Songs}"
                   ItemSelected="SongsListView_ItemSelected">
@@ -14,7 +17,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Upload Songs" Clicked="AddSongsButton_Clicked"/>
+        <Button Text="Upload Songs" Clicked="AddSongsButton_Clicked" Margin="20,5"/>
         <Button Text="Back" Clicked="BackButtonClicked" Margin="20,20"/>
     </StackLayout>
 
