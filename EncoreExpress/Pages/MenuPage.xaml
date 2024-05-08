@@ -5,23 +5,15 @@
              Title="MenuPage">
     <VerticalStackLayout>
         <Label Text="Main Menu" HorizontalOptions="Center" FontSize="40"/>
+        <Label Text="Welcome to Encore Express!" HorizontalOptions="Center" FontSize="30"/>
+        <Label Text="Brought to you by the Music Makers TM" HorizontalOptions="Center" FontSize="20"/>
 
+        <Label Text="What would you like to do?" HorizontalOptions="Center" FontSize="20" Margin="20"/>
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button Text="Go to the SongPlayer"  FontSize="20" Margin="20" Clicked="GoToPlayer"/>
             <Button Text="Make a playlist"  FontSize="20" Margin="20" Clicked="GoToPlaylist"/>
         </HorizontalStackLayout>
 
-        <Label Text="Previously Played" HorizontalOptions="Center" FontSize="30"/>
-        <Label x:Name="noSongs" Text=""/>
-
-        <CollectionView x:Name="prevSongs">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Label Text="{Binding}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        
     </VerticalStackLayout>
 </ContentPage>
