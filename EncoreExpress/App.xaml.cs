@@ -9,7 +9,7 @@ namespace EncoreExpress
         {
             InitializeComponent();
 
-            MainPage = new Pages.MenuPage();
+            MainPage = new Pages.PlayerPage();
         }
     }
 }
