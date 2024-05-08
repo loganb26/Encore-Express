@@ -22,6 +22,7 @@
         
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Row="2">
             <ImageButton x:Name="backButton" Source="back_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="BackButton_Clicked" BackgroundColor="Transparent"/>
+            <ImageButton x:Name="shuffleButton" Source="shuffle_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ShuffleButton_Clicked" BackgroundColor="Transparent"/>
             <ImageButton x:Name="forwardButton" Source="skip_50x50.png" WidthRequest="50" HeightRequest="50" Clicked="ForwardButton_Clicked" BackgroundColor="Transparent"/>
         </StackLayout>
 
