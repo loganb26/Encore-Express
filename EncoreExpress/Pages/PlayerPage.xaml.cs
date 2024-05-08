@@ -147,6 +147,11 @@ namespace EncoreExpress.Pages
 {
     App.Current.MainPage = new MenuPage();
 }
+
+        private void settings(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new SettingPage(mediaElement1);
+        }
     }
 }
 
